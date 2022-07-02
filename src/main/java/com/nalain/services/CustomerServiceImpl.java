@@ -29,6 +29,9 @@ public class CustomerServiceImpl  implements  CustomerService{
 
     @Override
     public Customer deleteCustomer(Integer id) {
+        if(id!=null){
+           return customers.remove(id);
+        }
         return null;
     }
 

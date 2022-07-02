@@ -47,8 +47,8 @@
                 <td th:text="${customer.getState()}"></td>
                 <td th:text="${customer.getZipCode()}"></td>
                 <td ><a  th:href="${ '/customers/'+ customer.getId()}">view</a></td>
-                <td ><a  th:href="${ '/customers/edit/'+ customer.getId()}">edit</a></td>
-                <td><a  th:href="${ '/customers/delete/'+ customer.getId()}">delete</a></td>
+                <td ><a  th:href="${ '/customers/edit/'+customer.getId()}">edit</a></td>
+                <td><a  th:href="${ '/customers/delete/'+customer.getId()}">delete</a></td>
 
 
             </tr>
