@@ -49,5 +49,11 @@ public class CustomerController {
         return "redirect:/customers/"+savedCustomer.getId();
     }
 
+    @RequestMapping("/customers/edit/{customerId}")
+    public String editCustomer(@PathVariable Integer customerId, Model model){
+
+        model.addAttribute("customer", customerService.findCustomerById(customerId));
+        return "customerform";
+    }
 
 }
