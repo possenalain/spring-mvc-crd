@@ -4,10 +4,8 @@ import com.nalain.domain.Product;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Service
 public class ProductServicempl implements ProductService {
 
@@ -26,6 +24,21 @@ public class ProductServicempl implements ProductService {
     @Override
     public Product getProductById(Integer id) {
         return products.get(id);
+    }
+
+    @Override
+    public Product saveOrUpdateProduct(Product product) {
+
+        if(product!=null){
+            if(product.getId()==null){
+                product.setId(Collections.max(products.keySet())+1);
+            }
+            products.put(product.getId(),product);
+            return product;
+        }
+        else{
+            throw new RuntimeException("product can't be null");
+        }
     }
 
     private void loadAllProducts(){
