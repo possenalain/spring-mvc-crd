@@ -17,32 +17,40 @@
 <body>
 <div class="container">
 
-    <div th:if="${not #lists.isEmpty(products)}">
-        <a  th:href="${ '/products/new'}">add new +<i class="fa-solid fa-plus"></i></a>
+    <div th:if="${not #lists.isEmpty(customers)}">
+        <a  th:href="${ '/customers/new'}">add new </a>
         <h2>customers </h2>
 
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
-                <th>firsName</th>
+                <th>firstName</th>
                 <th>lastName</th>
                 <th>email</th>
-                <th>adressLineOne</th>
-                <th>adressLineTwo</th>
-                <th>city<th>
-                <th>state<th>
+                <th>addressLineOne</th>
+                <th>addressLineTwo</th>
+                <th>city</th>
+                <th>state</th>
                 <th>zipcode</th>
+                <th>view</th>
+                <th>edit</th>
+                <th>delete</th>
             </tr>
             <tr th:each="customer : ${customers}">
-                <td th:text="${product.getId()}"></td>
-                <td th:text="${product.getFirstName()}"></td>
-                <td th:text="${product.getLastName()}"></td>
-                <td th:text="${product.getEmail()}"></td>
-                <td th:text="${product.getAdressLineOne()}"></td>
-                <td th:text="${product.getAdressLineTwo()}"></td>
-                <td th:text="${product.getCity()}"></td>
-                <td th:text="${product.getState()}"></td>
-                <td th:text="${product.getZipCode()}"></td>
+                <td th:text="${customer.getId()}"></td>
+                <td th:text="${customer.getFirstName()}"></td>
+                <td th:text="${customer.getLastName()}"></td>
+                <td th:text="${customer.getEmail()}"></td>
+                <td th:text="${customer.getAddressLineOne()}"></td>
+                <td th:text="${customer.getAddressLineTwo()}"></td>
+                <td th:text="${customer.getCity()}"></td>
+                <td th:text="${customer.getState()}"></td>
+                <td th:text="${customer.getZipCode()}"></td>
+                <td ><a  th:href="${ '/customers/'+ customer.getId()}">view</a></td>
+                <td ><a  th:href="${ '/customers/edit/'+ customer.getId()}">edit</a></td>
+                <td><a  th:href="${ '/customers/delete/'+ customer.getId()}">delete</a></td>
+
+
             </tr>
         </table>
 

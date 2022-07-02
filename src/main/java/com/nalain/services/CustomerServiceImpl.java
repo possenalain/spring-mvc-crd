@@ -1,14 +1,9 @@
 package com.nalain.services;
 
 import com.nalain.domain.Customer;
-import com.nalain.domain.Product;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CustomerServiceImpl  implements  CustomerService{
@@ -26,6 +21,9 @@ public class CustomerServiceImpl  implements  CustomerService{
 
     @Override
     public Customer findCustomerById(Integer id) {
+        if(id!=null){
+            return customers.get(id);
+        }
         return null;
     }
 
@@ -39,6 +37,23 @@ public class CustomerServiceImpl  implements  CustomerService{
         return null;
     }
 
+    @Override
+    public Customer saveOrUpdateProduct(Customer customer) {
+
+        if(customer!=null){
+            if(customer.getId()==null){
+                customer.setId(Collections.max(customers.keySet())+1);
+            }
+           customers.put(customer.getId(),customer);
+            return customer;
+
+        }
+        else {
+            throw new RuntimeException("customer can't be null");
+        }
+
+    }
+
 
     private Map<Integer, Customer>  loadDummyCustomers() {
 
@@ -48,7 +63,7 @@ public class CustomerServiceImpl  implements  CustomerService{
 
             Customer customer = new Customer();
             customer.setId(i);
-            customer.setFirsName("firstname" +i);
+            customer.setFirstName("firstname" +i);
             customer.setLastName("lastname "+i);
             customer.setEmail("email " +i);
             customer.setPhoneNumber("phone number "+i);

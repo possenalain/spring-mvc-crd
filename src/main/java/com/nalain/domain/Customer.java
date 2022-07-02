@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Customer {
 
-    private String firsName;
+    private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
@@ -17,8 +17,8 @@ public class Customer {
 
     Integer id;
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
@@ -57,8 +57,8 @@ public class Customer {
         this.id = id;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {
