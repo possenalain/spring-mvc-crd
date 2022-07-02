@@ -18,7 +18,7 @@
 <div class="container">
 
     <div th:if="${not #lists.isEmpty(products)}">
-        <a  th:href="${ '/products/new'}">add a product</a>
+        <a  th:href="${ '/products/new'}">add new +<i class="fa-solid fa-plus"></i></a>
         <h2>Products table</h2>
 
         <table class="table table-striped">
@@ -28,13 +28,17 @@
                 <th>Price</th>
                 <th>Image</th>
                 <th>list</th>
+                <th>edit</th>
+                <th>delete</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.getId()}"></td>
                 <td th:text="${product.getDescription()}"></td>
                 <td th:text="${product.getPrice()}"></td>
                 <td th:text="${product.getImageUrl()}"></td>
-                <td><a  th:href="${ '/products/'+ product.getId()}">view</a></td>
+                <td><a  th:href="${ '/products/'+ product.getId()}"> view <i class="bi bi-person"> </i></a></td>
+                <td><a  th:href="${ '/products/edit/'+ product.getId()}">edit</a></td>
+                <td><a  th:href="${ '/products/delete/'+ product.getId()}">del<i class="bi bi-trash"></i></a></td>
             </tr>
         </table>
 

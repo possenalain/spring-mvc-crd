@@ -10,7 +10,7 @@ import java.util.*;
 public class ProductServicempl implements ProductService {
 
 
-    private Map<Integer,Product> products;
+    private Map<Integer, Product> products;
 
     public ProductServicempl() {
         loadAllProducts();
@@ -29,30 +29,41 @@ public class ProductServicempl implements ProductService {
     @Override
     public Product saveOrUpdateProduct(Product product) {
 
-        if(product!=null){
-            if(product.getId()==null){
-                product.setId(Collections.max(products.keySet())+1);
+        if (product != null) {
+            if (product.getId() == null) {
+                product.setId(Collections.max(products.keySet()) + 1);
             }
-            products.put(product.getId(),product);
+            products.put(product.getId(), product);
             return product;
-        }
-        else{
+        } else {
             throw new RuntimeException("product can't be null");
         }
     }
 
-    private void loadAllProducts(){
+    @Override
+    public Product deleteProduct(Integer productId) {
 
-        products=new HashMap<>();
+        if (productId != null) {
 
-        for( int i=1;i<=10;i++){
+            return products.remove(productId);
+
+        } else {
+            throw new RuntimeException("product id can't be null");
+        }
+    }
+
+    private void loadAllProducts() {
+
+        products = new HashMap<>();
+
+        for (int i = 1; i <= 10; i++) {
 
             Product product = new Product();
             product.setId(i);
-            product.setDescription("Product  "+i);
-            product.setPrice(new BigDecimal(1+25.125*i));
-            product.setImageUrl("http://www.example.com/product"+i);
-            products.put(i,product);
+            product.setDescription("Product  " + i);
+            product.setPrice(new BigDecimal(1 + 25.125 * i));
+            product.setImageUrl("http://www.example.com/product" + i);
+            products.put(i, product);
 
         }
     }
