@@ -23,6 +23,11 @@ public class ProductServicempl implements ProductService {
         return new ArrayList<>(products.values());
     }
 
+    @Override
+    public Product getProductById(Integer id) {
+        return products.get(id);
+    }
+
     private void loadAllProducts(){
 
         products=new HashMap<>();
@@ -31,7 +36,7 @@ public class ProductServicempl implements ProductService {
 
             Product product = new Product();
             product.setId(i);
-            product.setDescription("Product"+i);
+            product.setDescription("Product  "+i);
             product.setPrice(new BigDecimal(1+25.125*i));
             product.setImageUrl("http://www.example.com/product"+i);
             products.put(i,product);

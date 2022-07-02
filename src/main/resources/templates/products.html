@@ -27,12 +27,14 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Image</th>
+                <th>list</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.getId()}"></td>
                 <td th:text="${product.getDescription()}"></td>
                 <td th:text="${product.getPrice()}"></td>
                 <td th:text="${product.getImageUrl()}"></td>
+                <td><a  th:href="${ '/products/'+ product.getId()}">view</a></td>
             </tr>
         </table>
 
