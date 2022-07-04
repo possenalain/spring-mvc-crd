@@ -1,9 +1,23 @@
 package com.nalain.domain;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-@Component
+@Entity
 public class Customer implements DomainEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Version
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     private String firstName;
     private String lastName;
@@ -14,7 +28,6 @@ public class Customer implements DomainEntity {
     private String city;
     private String state;
     private String zipCode;
-    private Integer id;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
