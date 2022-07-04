@@ -26,7 +26,7 @@ public abstract class AbstractMapService {
         return domainMap.get(id);
     }
 
-    DomainEntity saveOrUpdate(DomainEntity domainEntity){
+    DomainEntity save(DomainEntity domainEntity){
 
        if (domainEntity != null) {
             if (domainEntity.getId() == null) {

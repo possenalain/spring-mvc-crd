@@ -24,7 +24,7 @@ public class CustomerServiceImpl  extends AbstractMapService implements  Custome
 
 
 
-        return (Customer) super.saveOrUpdate(domainEntity);
+        return (Customer) super.save((DomainEntity) domainEntity);
     }
 
     @Override

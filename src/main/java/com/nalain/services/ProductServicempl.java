@@ -24,7 +24,7 @@ public class ProductServicempl extends AbstractMapService implements ProductServ
 
   @Override
     public Product save(Product domainEntity) {
-        return   (Product) super.saveOrUpdate(domainEntity);
+        return   (Product) super.save(domainEntity);
 
     }
 

@@ -44,11 +44,11 @@ public class CustomerController {
     }
 
 
-    @PostMapping("/customers")
+    @PostMapping("")
     public String saveOrUpdateCustomer(Customer customer){
 
         Customer savedCustomer= customerService.save(customer);
-        return "redirect:customers"+savedCustomer.getId();
+        return "redirect:customers/"+savedCustomer.getId();
     }
 
     @RequestMapping("/edit/{customerId}")

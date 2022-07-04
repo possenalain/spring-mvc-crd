@@ -20,7 +20,7 @@ public class ProductController {
 
     @RequestMapping("")
     public String listAllProducts(Model model){
-
+        System.out.println("---------------------------all products");
         model.addAttribute("products", productService.listAll());
 
         return "product/products";
@@ -52,12 +52,12 @@ public class ProductController {
         return "product/productform";
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public String saveOrUpdateProduct(Product product){
 
         Product saveProduct= productService.save(product);
 
-        return "redirect:/products"+saveProduct.getId();
+        return "redirect:products/"+saveProduct.getId();
     }
 
 }
