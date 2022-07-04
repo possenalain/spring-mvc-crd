@@ -2,15 +2,15 @@ package com.nalain.services;
 
 import com.nalain.domain.DomainEntity;
 import com.nalain.domain.Product;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.*;
 
 @Service
+@Profile("map")
 public class ProductServicempl extends AbstractMapService implements ProductService {
-
-
 
     @Override
     public List<DomainEntity> listAll() {
