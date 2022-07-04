@@ -1,6 +1,5 @@
 package com.nalain.services;
 
-import com.nalain.dao.ProductDao;
 import com.nalain.domain.Product;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -53,8 +52,9 @@ class ProductServiceJpaDaoImpl implements ProductService {
     public void delete(Integer id) {
 
         EntityManager em= entityManagerFactory.createEntityManager();
+        Product product=em.find(Product.class,id);
         em.getTransaction().begin();
-        em.remove(em.find(Product.class,id));
+        em.remove(product);
         em.getTransaction().commit();
 
     }
