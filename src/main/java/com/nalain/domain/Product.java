@@ -2,13 +2,12 @@ package com.nalain.domain;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product  implements DomainEntity{
 
-    private Integer id;
     private String description;
     private BigDecimal price;
     private String imageUrl;
-
+    private Integer id;
 
 
     public void setId(Integer id) {

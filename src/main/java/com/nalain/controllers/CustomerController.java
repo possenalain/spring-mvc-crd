@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/customers")
 @Controller
 public class CustomerController {
 
@@ -21,43 +22,44 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping("/customers")
+    @RequestMapping("")
     public String listAllCustomers(Model model){
-        model.addAttribute("customers",customerService.findAllCustomers());
-        return "customers";
+        model.addAttribute("customers",customerService.listAll());
+        return "customer/customers";
     }
 
 
-    @RequestMapping("/customers/{customerId}")
-    public String findCustomerByid(@PathVariable Integer customerId, Model model){
+    @RequestMapping("/{customerId}")
+    public String findById(@PathVariable Integer customerId, Model model){
 
-        model.addAttribute("customer", customerService.findCustomerById(customerId));
-        return "customer";
+        model.addAttribute("customer", customerService.getById(customerId));
+        return "customer/customer";
     }
 
-    @RequestMapping("/customers/new")
+    @RequestMapping("/new")
     public String newCustomer(Model model){
 
         model.addAttribute("customer",new Customer());
-        return "customerform";
+        return "customer/customerform";
     }
 
 
     @PostMapping("/customers")
     public String saveOrUpdateCustomer(Customer customer){
-        Customer savedCustomer= customerService.saveOrUpdateProduct(customer);
-        return "redirect:/customers/"+savedCustomer.getId();
+
+        Customer savedCustomer= customerService.save(customer);
+        return "redirect:customers"+savedCustomer.getId();
     }
 
-    @RequestMapping("/customers/edit/{customerId}")
+    @RequestMapping("/edit/{customerId}")
     public String editCustomer(@PathVariable Integer customerId, Model model){
 
-        model.addAttribute("customer", customerService.findCustomerById(customerId));
-        return "customerform";
+        model.addAttribute("customer", customerService.getById(customerId));
+        return "customer/customerform";
     }
-    @RequestMapping("/customers/delete/{customerId}")
+    @RequestMapping("/delete/{customerId}")
     public String deleteCustomer(@PathVariable Integer customerId){
-        customerService.deleteCustomer(customerId);
+        customerService.delete(customerId);
         return "redirect:/customers";
     }
 

@@ -3,7 +3,7 @@ package com.nalain.domain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Customer {
+public class Customer implements DomainEntity {
 
     private String firstName;
     private String lastName;
@@ -14,8 +14,7 @@ public class Customer {
     private String city;
     private String state;
     private String zipCode;
-
-    Integer id;
+    private Integer id;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

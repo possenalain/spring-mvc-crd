@@ -1,66 +1,39 @@
 package com.nalain.services;
 
 import com.nalain.domain.Customer;
+import com.nalain.domain.DomainEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class CustomerServiceImpl  implements  CustomerService{
+public class CustomerServiceImpl  extends AbstractMapService implements  CustomerService{
 
-    Map<Integer, Customer> customers;
-
-    public CustomerServiceImpl() {
-        this.customers = loadDummyCustomers();
+    @Override
+    public List<DomainEntity> listAll() {
+        return new ArrayList<>(domainMap.values());
     }
 
     @Override
-    public List<Customer> findAllCustomers() {
-        return new  ArrayList<>(customers.values());
+    public Customer getById(Integer id) {
+        return (Customer) super.getById(id);
     }
 
     @Override
-    public Customer findCustomerById(Integer id) {
-        if(id!=null){
-            return customers.get(id);
-        }
-        return null;
+    public Customer save(Customer domainEntity) {
+
+
+
+        return (Customer) super.saveOrUpdate(domainEntity);
     }
 
     @Override
-    public Customer deleteCustomer(Integer id) {
-        if(id!=null){
-           return customers.remove(id);
-        }
-        return null;
+    public void delete(Integer id) {
+        super.delete(id);
     }
+    void  loadDomainObjects() {
 
-    @Override
-    public Customer updateCustomer(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public Customer saveOrUpdateProduct(Customer customer) {
-
-        if(customer!=null){
-            if(customer.getId()==null){
-                customer.setId(Collections.max(customers.keySet())+1);
-            }
-           customers.put(customer.getId(),customer);
-            return customer;
-
-        }
-        else {
-            throw new RuntimeException("customer can't be null");
-        }
-
-    }
-
-
-    private Map<Integer, Customer>  loadDummyCustomers() {
-
-        Map<Integer, Customer> customers = new HashMap<>();
+       domainMap = new HashMap<>();
 
         for (int i = 1; i <= 10; i++) {
 
@@ -76,9 +49,9 @@ public class CustomerServiceImpl  implements  CustomerService{
             customer.setState("state "+i);
             customer.setZipCode("zipcode "+i);
 
-            customers.put(i,customer);
+            domainMap.put(i,customer);
         }
-        return customers;
+
     }
 
 }

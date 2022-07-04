@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+@RequestMapping("/products")
 @Controller
 public class ProductController {
 
@@ -18,46 +18,46 @@ public class ProductController {
     }
 
 
-    @RequestMapping("/products")
+    @RequestMapping("")
     public String listAllProducts(Model model){
 
-        model.addAttribute("products", productService.listAllProducts());
+        model.addAttribute("products", productService.listAll());
 
-        return "products";
+        return "product/products";
     }
 
-    @RequestMapping("/products/{productId}")
+    @RequestMapping("/{productId}")
     public String getProduct(@PathVariable Integer productId, Model model){
 
-        model.addAttribute("product", productService.getProductById(productId));
-        return "product";
+        model.addAttribute("product", productService.getById(productId));
+        return "product/product";
     }
-    @RequestMapping("/products/delete/{productId}")
+    @RequestMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable Integer productId){
-        productService.deleteProduct(productId);
+        productService.delete(productId);
         return "redirect:/products";
     }
 
-    @RequestMapping("/products/edit/{productId}")
+    @RequestMapping("/edit/{productId}")
     public String editProduct(@PathVariable Integer productId, Model model){
 
-        model.addAttribute("product", productService.getProductById(productId));
-        return "productform";
+        model.addAttribute("product", productService.getById(productId));
+        return "product/productform";
     }
 
-    @RequestMapping("/products/new")
+    @RequestMapping("/new")
     public String newProduct(Model model){
 
         model.addAttribute("product",new Product());
-        return "productform";
+        return "product/productform";
     }
 
-    @PostMapping("/products")
+    @PostMapping("/")
     public String saveOrUpdateProduct(Product product){
 
-        Product saveProduct= productService.saveOrUpdateProduct(product);
+        Product saveProduct= productService.save(product);
 
-        return "redirect:/products/"+saveProduct.getId();
+        return "redirect:/products"+saveProduct.getId();
     }
 
 }

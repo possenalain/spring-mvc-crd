@@ -1,18 +1,11 @@
 package com.nalain.services;
 
 import com.nalain.domain.Customer;
+import com.nalain.domain.DomainEntity;
 
 import java.util.List;
 
-public interface CustomerService {
+public interface CustomerService extends CRUDservice<Customer> {
 
-    List<Customer> findAllCustomers();
 
-    Customer findCustomerById(Integer id);
-
-    Customer deleteCustomer(Integer id);
-
-    Customer updateCustomer(Customer customer);
-
-    Customer saveOrUpdateProduct(Customer customer);
 }
