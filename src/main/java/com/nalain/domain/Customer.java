@@ -125,7 +125,7 @@ public class Customer implements DomainEntity {
         return "Customer{" +
                 "id=" + id +
                 ", version=" + version +
-                //", user=" + (user!=null ? user: "null") +
+                //", user=" + user +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

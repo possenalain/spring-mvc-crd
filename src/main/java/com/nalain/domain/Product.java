@@ -61,12 +61,12 @@ public class Product  implements DomainEntity{
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "\nProduct{" +
                 "id=" + id +
                 ", version=" + version +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", imageUrl='" + imageUrl + '\'' +
-                '}';
+                "}\n";
     }
 }

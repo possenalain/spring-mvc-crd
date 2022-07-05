@@ -25,9 +25,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadProducts();
-        loadCustomers();
-        loadUsers();
+       loadProducts();
+       /*  loadCustomers();
+        loadUsers();*/
     }
 
     @Autowired

@@ -8,17 +8,31 @@ public class User implements DomainEntity{
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Version
-    private long version;
+    private Integer version;
     private String username;
     @Transient
     private String password;
     private String encryptedPassword;
     private Boolean enabled;
 
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},targetEntity = Customer.class)
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Customer customer;
+
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    private Cart cart;
+
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
 
     public Customer getCustomer() {
         return customer;
@@ -32,18 +46,19 @@ public class User implements DomainEntity{
 
     @Override
     public void setId(Integer id) {
+        this.id=id;
 
     }
 
     @Override
     public Integer getId() {
-        return null;
+        return this.getId();
     }
     public long getVersion() {
         return version;
     }
 
-    public void setVersion(long version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
@@ -88,7 +103,8 @@ public class User implements DomainEntity{
                 ", password='" + password + '\'' +
                 ", encryptedPassword='" + encryptedPassword + '\'' +
                 ", enabled=" + enabled +
-                ", customer=" + (customer != null ? customer: "null") +
-                '}';
+                "\n, customer=" + customer +
+                "\n, cart=" + cart +
+                "\n}\n\n";
     }
 }
