@@ -2,6 +2,7 @@ package com.nalain.services.jpaservices;
 
 import com.nalain.SpringMvcApplication;
 import com.nalain.config.JpaIntegrationConfig;
+import com.nalain.domain.Customer;
 import com.nalain.domain.User;
 import com.nalain.services.UserService;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class UserServiceDaoImplTest {
     }
 
     @Test
-    void save() {
+    void saveUser() {
 
         User user = new User();
         user.setUsername("someone");
@@ -44,6 +45,28 @@ class UserServiceDaoImplTest {
         assertNotNull(savedUser.getEncryptedPassword());
 
         System.out.println(savedUser.getEncryptedPassword());
+    }
+    @Test
+    void saveUserWithCustomer() {
+
+        User user = new User();
+        user.setUsername("someone");
+        user.setPassword("password");
+
+
+        Customer customer = new Customer();
+        customer.setFirstName("customer 1");
+        customer.setLastName("customer last name");
+
+        user.setCustomer(customer);
+
+        User savedUser = userService.save(user);
+
+        assertNotNull(savedUser.getCustomer());
+
+        System.out.println("\n\n*************************");
+        System.out.println(savedUser);
+        System.out.println("*************************\n\n");
     }
 
     @Test

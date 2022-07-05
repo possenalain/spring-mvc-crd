@@ -17,6 +17,19 @@ public class User implements DomainEntity{
     private String encryptedPassword;
     private Boolean enabled;
 
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},targetEntity = Customer.class)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        customer.setUser(this);
+        this.customer = customer;
+
+    }
+
     @Override
     public void setId(Integer id) {
 
@@ -75,6 +88,7 @@ public class User implements DomainEntity{
                 ", password='" + password + '\'' +
                 ", encryptedPassword='" + encryptedPassword + '\'' +
                 ", enabled=" + enabled +
+                ", customer=" + (customer != null ? customer: "null") +
                 '}';
     }
 }

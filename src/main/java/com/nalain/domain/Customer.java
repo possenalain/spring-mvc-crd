@@ -11,7 +11,7 @@ public class Customer implements DomainEntity {
     @Version
     private Integer version;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private User user;
 
     public Integer getVersion() {
@@ -125,7 +125,7 @@ public class Customer implements DomainEntity {
         return "Customer{" +
                 "id=" + id +
                 ", version=" + version +
-                ", user=" + user +
+                //", user=" + (user!=null ? user: "null") +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
