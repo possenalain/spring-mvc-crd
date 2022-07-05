@@ -3,6 +3,8 @@ package com.nalain.services.jpaservices;
 import com.nalain.domain.Customer;
 import com.nalain.domain.Product;
 import com.nalain.services.CustomerService;
+import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +17,17 @@ import java.util.List;
 public class CustomerServiceDaoImpl implements CustomerService {
     private EntityManagerFactory entityManagerFactory;
 
+    private StrongPasswordEncryptor encryptor;
 
+    @Autowired
+    public void setEncryptor(StrongPasswordEncryptor encryptor) {
+        this.encryptor = encryptor;
+    }
 
     @PersistenceUnit
     public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-
 
     @Override
     public List<Customer> listAll() {
@@ -34,11 +40,15 @@ public class CustomerServiceDaoImpl implements CustomerService {
         EntityManager em= entityManagerFactory.createEntityManager();
         return em.find(Customer.class,id);
     }
-
     @Override
     public Customer save(Customer domainEntity) {
         EntityManager em= entityManagerFactory.createEntityManager();
+
+
         em.getTransaction().begin();
+        if(domainEntity.getUser()!=null && domainEntity.getUser().getPassword()!=null){
+            domainEntity.getUser().setEncryptedPassword(encryptor.encryptPassword(domainEntity.getUser().getPassword()));
+        }
         Customer savedCustomer=em.merge(domainEntity);
         em.getTransaction().commit();
 

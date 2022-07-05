@@ -11,6 +11,9 @@ public class Customer implements DomainEntity {
     @Version
     private Integer version;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
+
     public Integer getVersion() {
         return version;
     }
@@ -28,6 +31,14 @@ public class Customer implements DomainEntity {
     private String city;
     private String state;
     private String zipCode;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -107,5 +118,23 @@ public class Customer implements DomainEntity {
 
     public Integer getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", version=" + version +
+                ", user=" + user +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", addressLineOne='" + addressLineOne + '\'' +
+                ", addressLineTwo='" + addressLineTwo + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
     }
 }

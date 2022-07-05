@@ -66,4 +66,15 @@ public class User implements DomainEntity{
         this.enabled = enabled;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", version=" + version +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
 }
