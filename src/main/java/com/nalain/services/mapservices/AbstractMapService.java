@@ -1,4 +1,4 @@
-package com.nalain.services;
+package com.nalain.services.mapservices;
 
 import com.nalain.domain.DomainEntity;
 

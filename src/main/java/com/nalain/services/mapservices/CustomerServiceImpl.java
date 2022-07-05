@@ -1,7 +1,8 @@
-package com.nalain.services;
+package com.nalain.services.mapservices;
 
 import com.nalain.domain.Customer;
 import com.nalain.domain.DomainEntity;
+import com.nalain.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.*;
 
 @Service
 @Profile("map")
-public class CustomerServiceImpl  extends AbstractMapService implements  CustomerService{
+public class CustomerServiceImpl  extends AbstractMapService implements CustomerService {
 
     @Override
     public List<DomainEntity> listAll() {

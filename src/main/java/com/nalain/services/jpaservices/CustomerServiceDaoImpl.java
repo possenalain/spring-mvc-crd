@@ -1,6 +1,8 @@
-package com.nalain.services;
+package com.nalain.services.jpaservices;
 
+import com.nalain.domain.Customer;
 import com.nalain.domain.Product;
+import com.nalain.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import java.util.List;
-
 @Service
 @Profile("jpaDao")
-class ProductServiceJpaDaoImpl implements ProductService {
-
+public class CustomerServiceDaoImpl implements CustomerService {
     private EntityManagerFactory entityManagerFactory;
+
 
 
     @PersistenceUnit
@@ -22,39 +23,33 @@ class ProductServiceJpaDaoImpl implements ProductService {
     }
 
 
-
     @Override
-    public List<Product> listAll() {
-
+    public List<Customer> listAll() {
         EntityManager em= entityManagerFactory.createEntityManager();
-
-        return em.createQuery("FROM Product",Product.class).getResultList() ;
+        return em.createQuery("FROM Customer", Customer.class).getResultList() ;
     }
 
     @Override
-    public Product getById(Integer id) {
+    public Customer getById(Integer id) {
         EntityManager em= entityManagerFactory.createEntityManager();
-        return em.find(Product.class, id);
+        return em.find(Customer.class,id);
     }
 
     @Override
-    public Product save(Product domainEntity) {
-
+    public Customer save(Customer domainEntity) {
         EntityManager em= entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        Product savedProduct=em.merge(domainEntity);
+        Customer savedCustomer=em.merge(domainEntity);
         em.getTransaction().commit();
 
-        return savedProduct;
+        return savedCustomer;
     }
 
     @Override
     public void delete(Integer id) {
-
         EntityManager em= entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Product.class,id));
+        em.remove(em.find(Customer.class,id));
         em.getTransaction().commit();
-
     }
 }
