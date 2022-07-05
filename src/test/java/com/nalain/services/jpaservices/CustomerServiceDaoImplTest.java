@@ -5,6 +5,8 @@ import com.nalain.config.JpaIntegrationConfig;
 import com.nalain.domain.Customer;
 import com.nalain.domain.User;
 import com.nalain.services.CustomerService;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,14 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {SpringMvcApplication.class, JpaIntegrationConfig.class})
 @ActiveProfiles({"jpaDao"})
+@Setter
+@Getter
 class CustomerServiceDaoImplTest {
-
-    private CustomerService customerService;
-
     @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+    private CustomerService customerService;
 
     @Test
     void listAll() {

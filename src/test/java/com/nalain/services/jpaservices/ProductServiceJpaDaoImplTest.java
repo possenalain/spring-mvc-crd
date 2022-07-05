@@ -4,6 +4,8 @@ import com.nalain.SpringMvcApplication;
 import com.nalain.config.JpaIntegrationConfig;
 import com.nalain.domain.Product;
 import com.nalain.services.ProductService;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,16 +16,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = {SpringMvcApplication.class, JpaIntegrationConfig.class})
 @ActiveProfiles({"jpaDao"})
+@Getter
+@Setter
 class ProductServiceJpaDaoImplTest {
 
-
-    private ProductService productService;
-
     @Autowired
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
-    }
-
+    private ProductService productService;
 
     @Test
     void listAll() {

@@ -6,6 +6,8 @@ import com.nalain.domain.User;
 import com.nalain.services.CustomerService;
 import com.nalain.services.ProductService;
 import com.nalain.services.UserService;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.type.TrueFalseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -15,11 +17,15 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
+@Getter
+@Setter
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
+    @Autowired
     private ProductService productService;
+    @Autowired
     private CustomerService customerService;
-
+    @Autowired
     private UserService userService;
 
 
@@ -28,21 +34,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
        loadProducts();
        /*  loadCustomers();
         loadUsers();*/
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    @Autowired
-    private void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-
-    @Autowired
-    private void setProductService(ProductService productService) {
-        this.productService = productService;
     }
 
     private  void loadProducts(){

@@ -2,21 +2,19 @@ package com.nalain.controllers;
 
 import com.nalain.domain.Product;
 import com.nalain.services.ProductService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 @Controller
+@Getter
+@Setter
 public class ProductController {
-
-    private ProductService productService;
-
     @Autowired
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
-    }
-
+    private ProductService productService;
 
     @RequestMapping("")
     public String listAllProducts(Model model){
@@ -51,7 +49,6 @@ public class ProductController {
         model.addAttribute("product",new Product());
         return "product/productform";
     }
-
     @PostMapping("")
     public String saveOrUpdateProduct(Product product){
 

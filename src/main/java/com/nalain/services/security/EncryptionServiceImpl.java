@@ -1,19 +1,19 @@
 package com.nalain.services.security;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@Getter
+@Setter
 public class EncryptionServiceImpl  implements  EncryptionService{
 
-    private StrongPasswordEncryptor strongEncryptor;
-
     @Autowired
-    public void setStrongEncryptor(StrongPasswordEncryptor strongEncryptor) {
-        this.strongEncryptor = strongEncryptor;
-    }
+    private StrongPasswordEncryptor strongEncryptor;
 
     @Override
     public String encryptString(String input) {

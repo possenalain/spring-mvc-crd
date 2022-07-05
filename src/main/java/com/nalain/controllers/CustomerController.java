@@ -2,8 +2,9 @@ package com.nalain.controllers;
 
 
 import com.nalain.domain.Customer;
-import com.nalain.domain.Product;
 import com.nalain.services.CustomerService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/customers")
 @Controller
+@Getter
+@Setter
 public class CustomerController {
 
-    CustomerService customerService;
-
     @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+    CustomerService customerService;
 
     @RequestMapping("")
     public String listAllCustomers(Model model){

@@ -11,10 +11,7 @@ import java.util.List;
 @Service
 @Profile("map")
 public class UserServiceImpl extends AbstractMapService implements UserService {
-    @Override
-    void loadDomainObjects() {
 
-    }
 
     @Override
     public List<DomainEntity> listAll() {
@@ -35,5 +32,10 @@ public class UserServiceImpl extends AbstractMapService implements UserService {
     @Override
     public User save(User domainEntity) {
         return (User) super.save(domainEntity);
+    }
+
+    @Override
+    void loadDomainObjects() {
+
     }
 }

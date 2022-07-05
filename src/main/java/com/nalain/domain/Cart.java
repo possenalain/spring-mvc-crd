@@ -1,10 +1,15 @@
 package com.nalain.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Cart implements DomainEntity{
 
     @Id
@@ -20,42 +25,8 @@ public class Cart implements DomainEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart" , orphanRemoval = true )
     private List<CartDetail> cartDetails=new ArrayList<>();
 
-    @Override
-    public void setId(Integer id) {
-
-    }
-
-    @Override
-    public Integer getId() {
-        return null;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<CartDetail> getCartDetails() {
-        return cartDetails;
-    }
-
-    public void setCartDetails(List<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
-    }
 
     public void addCartDetails(CartDetail cartDetail) {
-
         this.cartDetails.add(cartDetail);
         cartDetail.setCart(this);
 

@@ -2,6 +2,8 @@ package com.nalain.services.jpaservices;
 
 import com.nalain.domain.Product;
 import com.nalain.services.ProductService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +14,11 @@ import java.util.List;
 
 @Service
 @Profile("jpaDao")
+@Getter
+@Setter
 class ProductServiceJpaDaoImpl implements ProductService {
-
-    private EntityManagerFactory entityManagerFactory;
-
-
     @PersistenceUnit
-    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
-
-
+    private EntityManagerFactory entityManagerFactory;
 
     @Override
     public List<Product> listAll() {

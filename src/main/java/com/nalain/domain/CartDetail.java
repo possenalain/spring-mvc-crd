@@ -1,8 +1,13 @@
 package com.nalain.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class CartDetail implements DomainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,42 +21,6 @@ public class CartDetail implements DomainEntity {
 
     @OneToOne
     private Product product;
-
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public Integer getId() {
-        return this.id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     @Override
     public String toString() {

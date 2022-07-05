@@ -35,7 +35,7 @@ public abstract class AbstractMapService {
             domainMap.put(domainEntity.getId(), domainEntity);
             return domainEntity;
         } else {
-            throw new RuntimeException("product can't be null");
+            throw new RuntimeException("Entity can't be null");
         }
     }
 

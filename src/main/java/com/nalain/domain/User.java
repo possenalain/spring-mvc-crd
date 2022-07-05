@@ -1,9 +1,14 @@
 package com.nalain.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
+@Setter
+@Getter
 public class User implements DomainEntity{
     @Id
     @Column(name = "id", nullable = false)
@@ -16,84 +21,16 @@ public class User implements DomainEntity{
     private String password;
     private String encryptedPassword;
     private Boolean enabled;
-
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Customer customer;
-
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     private Cart cart;
 
 
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
     public void setCustomer(Customer customer) {
         customer.setUser(this);
         this.customer = customer;
-
     }
-
-    @Override
-    public void setId(Integer id) {
-        this.id=id;
-
-    }
-
-    @Override
-    public Integer getId() {
-        return this.getId();
-    }
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEncryptedPassword() {
-        return encryptedPassword;
-    }
-
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
     @Override
     public String toString() {
         return "User{" +
