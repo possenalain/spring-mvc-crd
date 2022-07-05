@@ -52,9 +52,8 @@ class ProductServiceJpaDaoImpl implements ProductService {
     public void delete(Integer id) {
 
         EntityManager em= entityManagerFactory.createEntityManager();
-        Product product=em.find(Product.class,id);
         em.getTransaction().begin();
-        em.remove(product);
+        em.remove(em.find(Product.class,id));
         em.getTransaction().commit();
 
     }
