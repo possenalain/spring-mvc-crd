@@ -12,18 +12,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class Product  implements DomainEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Version
-    private Integer version;
+public class Product  extends BaseEntity{
     private String description;
     private BigDecimal price;
     private String imageUrl;
-    @CreatedDate
-    private Date dateCreated;
-    @LastModifiedDate
-    private Date dateUpdated;
-
 }

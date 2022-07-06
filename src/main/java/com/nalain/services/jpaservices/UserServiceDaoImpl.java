@@ -26,8 +26,9 @@ public class UserServiceDaoImpl implements UserService {
     private StrongPasswordEncryptor encryptor;
 
     @Override
-    public List<DomainEntity> listAll() {
-        return null;
+    public List<User> listAll() {
+     EntityManager em= entityManagerFactory.createEntityManager();
+        return em.createQuery("FROM User",User.class).getResultList();
     }
 
     @Override

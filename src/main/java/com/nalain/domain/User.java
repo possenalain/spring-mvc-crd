@@ -16,6 +16,7 @@ public class User implements DomainEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String username;
     private String encryptedPassword;
     private Boolean enabled;
@@ -25,12 +26,6 @@ public class User implements DomainEntity{
 
     @Transient
     private String password;
-    @CreatedDate
-    private Date dateCreated;
-    @LastModifiedDate
-    private Date dateUpdated;
-
-
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Customer customer;
 

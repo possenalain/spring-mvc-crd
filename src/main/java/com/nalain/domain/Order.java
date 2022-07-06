@@ -7,29 +7,35 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-//@Entity
+@Entity
 @Getter
 @Setter
-public class Order implements DomainEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Order extends BaseEntity{
 
     @ManyToOne
     private Customer customer;
 
     @Embedded
-    private Address shippingAddress;
+    private Address shipToAddress;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "order",orphanRemoval = true)
+    private List<OrderDetail> orderDetails=new ArrayList<>();
 
     private OrderStatus status;
 
-    @CreatedDate
-    private Date dateCreated;
-    @LastModifiedDate
-    private Date dateUpdated;
-
     private Date dateShipped;
+
+    public void addToOrderDetails(OrderDetail orderDetail){
+        orderDetail.setOrder(this);
+        orderDetails.add(orderDetail);
+    }
+    public void removeOrderDetail(OrderDetail orderDetail){
+        orderDetail.setOrder(null);
+        orderDetails.remove(orderDetail);
+    }
 
 }

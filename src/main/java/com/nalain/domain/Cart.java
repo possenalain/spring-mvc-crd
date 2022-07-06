@@ -13,20 +13,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Cart implements DomainEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Version
-    private Integer version;
+public class Cart extends BaseEntity {
     @OneToOne
     private User user;
-    @CreatedDate
-    private Date dateCreated;
-    @LastModifiedDate
-    private Date dateUpdated;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", orphanRemoval = true)
     private List<CartDetail> cartDetails = new ArrayList<>();
 

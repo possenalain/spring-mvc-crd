@@ -5,10 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 @Getter
 @Setter
-public class OrderLine implements DomainEntity{
+public class OrderDetail implements DomainEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
