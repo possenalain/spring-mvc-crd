@@ -1,6 +1,5 @@
 package com.nalain.services.jpaservices;
 
-import com.nalain.domain.DomainEntity;
 import com.nalain.domain.User;
 import com.nalain.services.UserService;
 import lombok.Getter;
@@ -54,7 +53,8 @@ public class UserServiceDaoImpl implements UserService {
     public void delete(Integer id) {
         EntityManager em= entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(User.class,id));
+        User user = em.find(User.class, id);
+        em.remove(user);
         em.getTransaction().commit();
     }
 }

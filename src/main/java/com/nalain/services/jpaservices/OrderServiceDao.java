@@ -1,8 +1,6 @@
 package com.nalain.services.jpaservices;
 
 import com.nalain.domain.Order;
-import com.nalain.domain.Product;
-import com.nalain.domain.User;
 import com.nalain.services.OrderService;
 import lombok.Getter;
 import lombok.Setter;

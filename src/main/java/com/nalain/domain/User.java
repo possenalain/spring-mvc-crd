@@ -2,28 +2,17 @@ package com.nalain.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "Users")
 @Setter
 @Getter
-public class User implements DomainEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+public class User extends BaseEntity{
     private String username;
     private String encryptedPassword;
     private Boolean enabled;
-
-    @Version
-    private Integer version;
-
     @Transient
     private String password;
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
@@ -35,5 +24,9 @@ public class User implements DomainEntity{
     public void setCustomer(Customer customer) {
         customer.setUser(this);
         this.customer = customer;
+    }
+    public void setCart(Cart cart) {
+        cart.setUser(this);
+        this.cart = cart;
     }
 }

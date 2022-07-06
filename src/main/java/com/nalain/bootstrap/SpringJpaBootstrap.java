@@ -7,8 +7,6 @@ import com.nalain.services.ProductService;
 import com.nalain.services.UserService;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
-import org.hibernate.type.TrueFalseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

@@ -8,17 +8,11 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class OrderDetail implements DomainEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+public class OrderDetail extends BaseEntity{
     @ManyToOne
     private Order order;
-
     @OneToOne
     private Product product;
-
     private Integer quantity;
 
 

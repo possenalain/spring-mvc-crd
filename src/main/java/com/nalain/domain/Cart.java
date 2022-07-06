@@ -2,12 +2,9 @@ package com.nalain.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +20,6 @@ public class Cart extends BaseEntity {
     public void addCartDetails(CartDetail cartDetail) {
         this.cartDetails.add(cartDetail);
         cartDetail.setCart(this);
-
     }
 
     public void removeCartDetails(CartDetail cartDetail) {

@@ -56,7 +56,8 @@ public class CustomerServiceDaoImpl implements CustomerService {
     public void delete(Integer id) {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Customer.class, id));
+        Customer customer = em.find(Customer.class, id);
+        em.remove(customer);
         em.getTransaction().commit();
     }
 }

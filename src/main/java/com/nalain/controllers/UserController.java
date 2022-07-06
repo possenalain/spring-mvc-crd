@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/users/")
+@RequestMapping("/users")
 @Getter
 @Setter
 public class UserController {
@@ -22,16 +22,16 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping({"/list", "/"})
+    @RequestMapping("")
     public String listUsers(Model model){
         model.addAttribute("users", userService.listAll());
-        return "user/list";
+        return "user/users";
     }
 
-    @RequestMapping("/show/{id}")
+    @RequestMapping("/{id}")
     public String getUser(@PathVariable Integer id, Model model){
         model.addAttribute("user", userService.getById(id));
-        return "user/show";
+        return "user/user";
     }
 
     @RequestMapping("/edit/{id}")
@@ -49,12 +49,12 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String saveOrUpdate(User user){
         User savedUser = userService.save(user);
-        return "redirect:/user/show/" + savedUser.getId();
+        return "redirect:/users/" + savedUser.getId();
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         userService.delete(id);
-        return "redirect:/user/list";
+        return "redirect:/users";
     }
 }

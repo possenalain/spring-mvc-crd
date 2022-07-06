@@ -44,19 +44,20 @@ public class CustomerController {
     }
 
 
-    @PostMapping("")
-    public String saveOrUpdateCustomer(@RequestBody Customer customer,Model model){
-        Customer savedCustomer= customerService.save(customer);
-        model.addAttribute("customer",savedCustomer);
-        return "redirect:customers/"+savedCustomer.getId();
-    }
-
     @RequestMapping("/edit/{customerId}")
     public String editCustomer(@PathVariable Integer customerId, Model model){
 
         model.addAttribute("customer", customerService.getById(customerId));
         return "customer/customerform";
     }
+
+    @PostMapping("")
+    public String saveOrUpdateCustomer(@RequestBody Customer customer,Model model){
+        Customer savedCustomer= customerService.save(customer);
+        model.addAttribute("customer",savedCustomer);
+        return "redirect:/customers/"+savedCustomer.getId();
+    }
+
     @RequestMapping("/delete/{customerId}")
     public String deleteCustomer(@PathVariable Integer customerId){
         customerService.delete(customerId);

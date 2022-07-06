@@ -2,19 +2,12 @@ package com.nalain.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.aop.framework.adapter.AdvisorAdapterRegistrationManager;
 
 import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Customer implements DomainEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+public class Customer extends BaseEntity {
     @OneToOne
     private User user;
     private String firstName;
@@ -24,7 +17,6 @@ public class Customer implements DomainEntity {
 
     @Embedded
     private  Address billingAddress;
-
     @Embedded
     private Address shippingAddress;
 

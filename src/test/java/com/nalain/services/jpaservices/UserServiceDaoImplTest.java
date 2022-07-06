@@ -2,6 +2,7 @@ package com.nalain.services.jpaservices;
 
 import com.nalain.SpringMvcApplication;
 import com.nalain.config.JpaIntegrationConfig;
+import com.nalain.dao.domain.*;
 import com.nalain.domain.*;
 import com.nalain.services.ProductService;
 import com.nalain.services.UserService;
