@@ -6,11 +6,13 @@ import com.nalain.services.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 @Service
@@ -18,7 +20,9 @@ import java.util.List;
 @Getter
 @Setter
 public class UserServiceDaoImpl implements UserService {
+    @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
+    @Autowired
     private StrongPasswordEncryptor encryptor;
 
     @Override

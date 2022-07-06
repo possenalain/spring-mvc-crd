@@ -28,19 +28,4 @@ public class Customer implements DomainEntity {
     @Embedded
     private Address shippingAddress;
 
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", version=" + version +
-                //", user=" + user +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", billingAddress=" + billingAddress +
-                ", shippingAddress=" + shippingAddress +
-                '}';
-    }
 }
