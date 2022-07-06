@@ -27,11 +27,18 @@ class CustomerServiceDaoImplTest {
     @Test
     void listAll() {
         List<Customer> customers = (List<Customer>) customerService.listAll();
-        assertNotNull(customers);
+        assertEquals(customers.size(),0);
     }
 
     @Test
     void getById() {
+        Customer customer = new Customer();
+        customer.setId(1);
+        customer.setFirstName("customer");
+        Customer savedCustomer = customerService.save(customer);
+
+        Customer custromerById = customerService.getById(savedCustomer.getId());
+        assertEquals(savedCustomer.getId(),custromerById.getId());
     }
 
     @Test
