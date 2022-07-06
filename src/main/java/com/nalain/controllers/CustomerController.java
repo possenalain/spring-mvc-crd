@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/customers")
@@ -44,9 +45,9 @@ public class CustomerController {
 
 
     @PostMapping("")
-    public String saveOrUpdateCustomer(Customer customer){
-
+    public String saveOrUpdateCustomer(@RequestBody Customer customer,Model model){
         Customer savedCustomer= customerService.save(customer);
+        model.addAttribute("customer",savedCustomer);
         return "redirect:customers/"+savedCustomer.getId();
     }
 
