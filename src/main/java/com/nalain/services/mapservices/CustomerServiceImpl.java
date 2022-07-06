@@ -1,5 +1,6 @@
 package com.nalain.services.mapservices;
 
+import com.nalain.domain.Address;
 import com.nalain.domain.Customer;
 import com.nalain.domain.DomainEntity;
 import com.nalain.services.CustomerService;
@@ -46,11 +47,17 @@ public class CustomerServiceImpl  extends AbstractMapService implements Customer
             customer.setLastName("lastname "+i);
             customer.setEmail("email " +i);
             customer.setPhoneNumber("phone number "+i);
-            customer.setAddressLineOne("line one "+i);
-            customer.setAddressLineTwo("line two "+i);
-            customer.setCity("city"+i);
-            customer.setState("state "+i);
-            customer.setZipCode("zipcode "+i);
+
+            Address billingAddress = new Address();
+            billingAddress.setAddressLineOne("line one "+i);
+            billingAddress.setAddressLineTwo("line two "+i);
+            billingAddress.setCity("city"+i);
+            billingAddress.setState("state "+i);
+            billingAddress.setZipCode("zipcode "+i);
+
+            customer.setBillingAddress(billingAddress);
+            customer.setShippingAddress(billingAddress);
+
 
             domainMap.put(i,customer);
         }

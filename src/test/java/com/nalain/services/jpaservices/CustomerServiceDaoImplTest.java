@@ -43,7 +43,6 @@ class CustomerServiceDaoImplTest {
         user.setUsername("someone");
         user.setPassword("password");
         customer.setUser(user);
-
         Customer savedCustomer = customerService.save(customer);
 
         assertNotNull(savedCustomer.getUser());

@@ -2,6 +2,7 @@ package com.nalain.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.aop.framework.adapter.AdvisorAdapterRegistrationManager;
 
 import javax.persistence.*;
 @Getter
@@ -20,11 +21,13 @@ public class Customer implements DomainEntity {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String addressLineOne;
-    private String addressLineTwo;
-    private String city;
-    private String state;
-    private String zipCode;
+
+    @Embedded
+    private  Address billingAddress;
+
+    @Embedded
+    private Address shippingAddress;
+
 
     @Override
     public String toString() {
@@ -36,11 +39,8 @@ public class Customer implements DomainEntity {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", addressLineOne='" + addressLineOne + '\'' +
-                ", addressLineTwo='" + addressLineTwo + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
+                ", billingAddress=" + billingAddress +
+                ", shippingAddress=" + shippingAddress +
                 '}';
     }
 }

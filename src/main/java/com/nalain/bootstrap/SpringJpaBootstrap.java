@@ -1,5 +1,6 @@
 package com.nalain.bootstrap;
 
+import com.nalain.domain.Address;
 import com.nalain.domain.Customer;
 import com.nalain.domain.Product;
 import com.nalain.domain.User;
@@ -8,6 +9,7 @@ import com.nalain.services.ProductService;
 import com.nalain.services.UserService;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.hibernate.type.TrueFalseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -55,11 +57,17 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             customer.setLastName("lastname "+i);
             customer.setEmail("email " +i);
             customer.setPhoneNumber("phone number "+i);
-            customer.setAddressLineOne("line one "+i);
-            customer.setAddressLineTwo("line two "+i);
-            customer.setCity("city"+i);
-            customer.setState("state "+i);
-            customer.setZipCode("zipcode "+i);
+
+            Address billingAddress = new Address();
+            billingAddress.setAddressLineOne("line one "+i);
+            billingAddress.setAddressLineTwo("line two "+i);
+            billingAddress.setCity("city"+i);
+            billingAddress.setState("state "+i);
+            billingAddress.setZipCode("zipcode "+i);
+
+            customer.setBillingAddress(billingAddress);
+           // customer.setShippingAddress(billingAddress);
+
             customerService.save(customer);
         }
 
