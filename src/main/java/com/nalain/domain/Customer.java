@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Customer extends BaseEntity {
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private User user;
     private String firstName;
     private String lastName;

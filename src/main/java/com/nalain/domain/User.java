@@ -18,7 +18,7 @@ public class User extends BaseEntity{
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = true)
     private Cart cart;
 
     public void setCustomer(Customer customer) {
