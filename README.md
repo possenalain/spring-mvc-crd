@@ -2,7 +2,7 @@
 spring mvc -  thymeleaf- crud ops
 
 
-In this little project, I am going to implement **mvc** and use **thymeleaf** to create a java application 
+**mvc**  **thymeleaf**  spring boot application 
 with basic crud methods
 
 * Create, 
